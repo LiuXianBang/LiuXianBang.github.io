@@ -1,1 +1,699 @@
-Wait to Edit....
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邦创无限机器人团队</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --gold: #f59e0b;
+            --silver: #94a3b8;
+            --bronze: #c2410c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+            padding: 16px 0;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: #eff6ff;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--card-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+        }
+
+        /* About - Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            max-width: 340px;
+            margin: 0 24px;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 24px;
+        }
+
+        /* Goals */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .goal-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .goal-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .goal-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .goal-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Awards */
+        .awards-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .award-item {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+
+        .award-item:hover {
+            transform: translateX(4px);
+        }
+
+        .award-rank {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .award-rank.gold {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #b45309;
+        }
+
+        .award-rank.silver {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: #475569;
+        }
+
+        .award-rank.bronze {
+            background: linear-gradient(135deg, #fed7aa, #fdba74);
+            color: #9a3412;
+        }
+
+        .award-info h4 {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .award-info span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .project-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .project-content {
+            padding: 24px;
+        }
+
+        .project-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Members */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .member-card {
+            background: var(--card-bg);
+            padding: 32px 24px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .member-card h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .member-card .role {
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .member-card p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item::after {
+                left: 20px;
+            }
+
+            .timeline-content {
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>邦创无限</h1>
+            <p>广东工业大学揭阳校区机器人团队 - 创新无限，未来可期</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">团队历程</a></li>
+            <li><a href="#goals">育人目标</a></li>
+            <li><a href="#awards">团队荣誉</a></li>
+            <li><a href="#projects">项目展示</a></li>
+            <li><a href="#members">团队成员</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>团队历程</h2>
+                <p>从零起步，一路成长</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2022年9月</h3>
+                        <p>揭阳校区与大学城校区联合机器人团队成立，邦创无限机器人团队在广工揭阳ROBOT团队基础上组建</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2022年11月</h3>
+                        <p>首次报名中国机器人大赛，在老师和学长支持下，跌跌撞撞拿下首个国奖</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2023年5月</h3>
+                        <p>团队招新，吸纳新鲜血液</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2023年7-8月</h3>
+                        <p>新成员赴大学城参与暑期集训，备战世界机器人大赛</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2023年9-10月</h3>
+                        <p>斩获华南赛区一等奖，中国赛助老生活服务赛道冠军</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2024-2025年</h3>
+                        <p>持续突破，在多个赛项中屡获佳绩，农业机器人、侦查机器人等方向全面开花</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals">
+        <div class="container">
+            <div class="section-title">
+                <h2>育人目标</h2>
+                <p>培养能创新、懂技术、肯奋斗的成员</p>
+            </div>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-icon">💡</div>
+                    <h3>培养创造力</h3>
+                    <p>激发创新思维，能够针对实际问题提出独特的解决方案</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">⚙️</div>
+                    <h3>磨练真技术</h3>
+                    <p>系统掌握机器人开发知识，涵盖机械、电子、编程等领域</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">🤝</div>
+                    <h3>提高合作观</h3>
+                    <p>培养团队协作精神，能够积极参与和推动团队工作</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">🔥</div>
+                    <h3>保持高热情</h3>
+                    <p>激励持续奋斗，度过充实而有意义的大学生活</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards">
+        <div class="container">
+            <div class="section-title">
+                <h2>团队荣誉</h2>
+                <p>实力见证，荣誉满载</p>
+            </div>
+            <div class="awards-list">
+                <div class="award-item">
+                    <div class="award-rank gold">冠军</div>
+                    <div class="award-info">
+                        <h4>中国机器人大赛 助老生活服务赛项 一等奖</h4>
+                        <span>2023年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank gold">一等</div>
+                    <div class="award-info">
+                        <h4>中国机器人大赛 农业机器人-采摘机器人 总决赛一等奖</h4>
+                        <span>2025年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank gold">一等</div>
+                    <div class="award-info">
+                        <h4>中国机器人大赛 公共安全赛项-侦查机器人 一等奖</h4>
+                        <span>2025年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank gold">一等</div>
+                    <div class="award-info">
+                        <h4>公共安全无人系统开发应用大赛 侦查机器人赛项 一等奖</h4>
+                        <span>2025年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank gold">一等</div>
+                    <div class="award-info">
+                        <h4>中国机器人大赛 洛阳专项赛一等奖</h4>
+                        <span>2024年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank gold">一等</div>
+                    <div class="award-info">
+                        <h4>"高教杯"全国大学生先进成图技术与产品信息建模创新大赛 一等奖</h4>
+                        <span>2023年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank gold">一等</div>
+                    <div class="award-info">
+                        <h4>世界机器人大赛中国赛 华南赛区选拔赛一等奖</h4>
+                        <span>2023年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank silver">二等</div>
+                    <div class="award-info">
+                        <h4>中国机器人大赛 助老环境赛项 二等奖</h4>
+                        <span>2023年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank silver">二等</div>
+                    <div class="award-info">
+                        <h4>中国机器人大赛 公共安全赛项-侦查机器人 二等奖</h4>
+                        <span>2025年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank silver">二等</div>
+                    <div class="award-info">
+                        <h4>全国机械创新设计大赛 省赛二等奖</h4>
+                        <span>2024年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank bronze">三等</div>
+                    <div class="award-info">
+                        <h4>中国机器人大赛 助老生活服务赛项 三等奖</h4>
+                        <span>2022年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank bronze">三等</div>
+                    <div class="award-info">
+                        <h4>全国大学生嵌入式芯片与系统设计竞赛 国家三等奖</h4>
+                        <span>2024年</span>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-rank bronze">三等</div>
+                    <div class="award-info">
+                        <h4>广东省"合泰杯"单片机应用设计竞赛 三等奖</h4>
+                        <span>2023年</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>项目展示</h2>
+                <p>技术创新，解决实际问题</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <h3>助老服务机器人</h3>
+                        <p>面向老年人生活服务的智能机器人，提供日常照护辅助功能</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🌾</div>
+                    <div class="project-content">
+                        <h3>农业采摘机器人</h3>
+                        <p>自主导航与视觉识别技术结合，实现农作物智能化采摘</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🔍</div>
+                    <div class="project-content">
+                        <h3>侦查机器人</h3>
+                        <p>公共安全领域应用，具备环境感知和目标识别能力</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="members">
+        <div class="container">
+            <div class="section-title">
+                <h2>团队成员</h2>
+                <p>志同道合，共同成长</p>
+            </div>
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>待添加</h3>
+                    <p class="role">团队负责人</p>
+                    <p>负责团队整体运营管理</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>待添加</h3>
+                    <p class="role">技术组长</p>
+                    <p>负责技术方向把控</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>待添加</h3>
+                    <p class="role">机械组</p>
+                    <p>负责机械结构设计</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>待添加</h3>
+                    <p class="role">电控组</p>
+                    <p>负责电路与控制系统</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>待添加</h3>
+                    <p class="role">视觉组</p>
+                    <p>负责图像处理与识别</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>待添加</h3>
+                    <p class="role">算法组</p>
+                    <p>负责导航与决策算法</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>邦创无限机器人团队 | 广东工业大学揭阳校区</p>
+            <p style="margin-top: 8px; opacity: 0.6;">创新无限 未来可期</p>
+        </div>
+    </footer>
+</body>
+</html>
